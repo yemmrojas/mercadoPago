@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Mercado pago</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="buscar_producto">Buscar producto</string>
+    <string name="ver_producto">Ver producto</string>
+    <string name="no_se_encontro">"¡No se encontró ningún producto con este nombre, intente nuevamente! "</string>
 </resources>

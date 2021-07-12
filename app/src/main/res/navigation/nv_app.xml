@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nv_app"
+    app:startDestination="@id/searchProducts">
+
+    <fragment
+        android:id="@+id/searchProducts"
+        android:name="com.mercadolibre.mercadopago.ui.fragment.SearchProducts"
+        android:label="fragment_search_products"
+        tools:layout="@layout/fragment_search_products" >
+        <action
+            android:id="@+id/action_searchProducts_to_descriptionProducts"
+            app:destination="@id/descriptionProducts" />
+    </fragment>
+    <fragment
+        android:id="@+id/descriptionProducts"
+        android:name="com.mercadolibre.mercadopago.ui.fragment.DescriptionProducts"
+        android:label="fragment_description_products"
+        tools:layout="@layout/fragment_description_products" />
+</navigation>
