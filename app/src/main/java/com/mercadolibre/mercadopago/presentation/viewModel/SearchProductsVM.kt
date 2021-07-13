@@ -33,5 +33,4 @@ class SearchProductsVM(val searchProductUseCase: SearchProductUseCase) : ViewMod
         else _state.value = State.Success(products)
     }
 
-
 }

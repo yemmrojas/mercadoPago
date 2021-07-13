@@ -21,10 +21,12 @@ class ListProductAdapter : RecyclerView.Adapter<ListProductAdapter.Holder>() {
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
 
-        holder.binding.title.text = "${listProduct[position].title}..."
+        holder.binding.title.text = listProduct[position].title
         holder.binding.price.text = toPrice(listProduct[position].prace.toString())
-        Glide.with(holder.itemView)
-            .load(listProduct[position].image)
+        val url = listProduct[position].image
+        Glide
+            .with(holder.itemView.context)
+            .load(url)
             .centerCrop()
             .into(holder.binding.img)
 
@@ -36,7 +38,7 @@ class ListProductAdapter : RecyclerView.Adapter<ListProductAdapter.Holder>() {
     override fun getItemCount(): Int = listProduct.size
 
     fun itemListener(callbackT: CallbackT<ProductsModel>){
-        this.callback = callback
+        this.callback = callbackT
     }
 
     fun loadData (data : List<ProductsModel>){

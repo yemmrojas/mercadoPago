@@ -9,9 +9,9 @@ data class ProductsEntity (
     @SerializedName("query")
     val query : String = "",
     @SerializedName("results")
-    val results : List<Result> = ArrayList()
+    val results : List<Results> = ArrayList()
 ){
-    data class Result(
+    data class Results(
         @SerializedName("id")
         val id : String = "",
         @SerializedName("title")
@@ -19,7 +19,7 @@ data class ProductsEntity (
         @SerializedName("thumbnail")
         val thumbnail : String = "",
         @SerializedName("price")
-        val price : Int = 0
+        val price : Double = 0.0
     )
 }
 

@@ -7,7 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import android.widget.Toast
+import androidx.core.os.bundleOf
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.gson.Gson
+import com.mercadolibre.mercadopago.R
 import com.mercadolibre.mercadopago.databinding.FragmentSearchProductsBinding
 import com.mercadolibre.mercadopago.domain.model.ProductsModel
 import com.mercadolibre.mercadopago.presentation.state.State
@@ -55,13 +59,17 @@ class SearchProducts : Fragment() {
             layoutManager = GridLayoutManager(requireContext(), 2)
             adapter = listProductsAdapter
         }
-
+        observeState()
+        onItemListener()
     }
 
     private fun observeState(){
         viewModel.state.observe(viewLifecycleOwner, { isState->
             when(isState){
-                is State.Empty -> binding.listEmpty.visibility = View.VISIBLE
+                is State.Empty -> {
+                    onLoading(false)
+                    binding.listEmpty.visibility = View.VISIBLE
+                }
                 is State.Failed -> {
                     onLoading(false)
                     onFailed("Fallo al querer traer la lista de productos")
@@ -95,7 +103,6 @@ class SearchProducts : Fragment() {
             SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 viewModel.loadData(searchTxt)
-                observeState()
                 initRecycler()
                 return false
             }
@@ -106,6 +113,14 @@ class SearchProducts : Fragment() {
             }
         })
 
+    }
+
+    private fun onItemListener(){
+        listProductsAdapter.itemListener {
+            val bundle = Bundle()
+            bundle.putString("product", Gson().toJson(it))
+            findNavController().navigate(R.id.action_searchProducts_to_descriptionProducts, bundle)
+        }
     }
 
 
