@@ -13,6 +13,11 @@ class SearchProductsVM(val searchProductUseCase: SearchProductUseCase) : ViewMod
 
     private val _state =  MutableLiveData<State>()
     val state : LiveData<State> get() = _state
+    val products = MutableLiveData<List<ProductsModel>>()
+    private val _product = MutableLiveData<ProductsModel>()
+    val product : LiveData<ProductsModel> get() = _product
+    var loading = false
+    var empty = false
 
     fun loadData(txtSearch : String){
         _state.value = State.Loading
@@ -31,6 +36,10 @@ class SearchProductsVM(val searchProductUseCase: SearchProductUseCase) : ViewMod
     private fun sucessData(products : List<ProductsModel>){
         if (products.isNullOrEmpty()) _state.value = State.Empty
         else _state.value = State.Success(products)
+    }
+
+    fun loadDataDescription(product : ProductsModel){
+        this._product.value = product
     }
 
 }

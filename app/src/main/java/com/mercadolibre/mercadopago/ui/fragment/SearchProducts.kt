@@ -17,6 +17,7 @@ import com.mercadolibre.mercadopago.domain.model.ProductsModel
 import com.mercadolibre.mercadopago.presentation.state.State
 import com.mercadolibre.mercadopago.presentation.viewModel.SearchProductsVM
 import com.mercadolibre.mercadopago.ui.adapter.ListProductAdapter
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SearchProducts : Fragment() {
@@ -24,9 +25,8 @@ class SearchProducts : Fragment() {
 
     private var _binding : FragmentSearchProductsBinding? = null
     private val  binding get() =  _binding!!
-    private var listProducts = ArrayList<ProductsModel>()
     private lateinit var listProductsAdapter: ListProductAdapter
-    private val viewModel : SearchProductsVM by viewModel()
+    private val viewModel : SearchProductsVM by sharedViewModel()
     private var searchTxt: String = ""
 
     override fun onCreateView(
@@ -59,33 +59,20 @@ class SearchProducts : Fragment() {
             layoutManager = GridLayoutManager(requireContext(), 2)
             adapter = listProductsAdapter
         }
-        observeState()
+        initObserver()
         onItemListener()
     }
 
-    private fun observeState(){
-        viewModel.state.observe(viewLifecycleOwner, { isState->
-            when(isState){
-                is State.Empty -> {
-                    onLoading(false)
-                    binding.listEmpty.visibility = View.VISIBLE
-                }
-                is State.Failed -> {
-                    onLoading(false)
-                    onFailed("Fallo al querer traer la lista de productos")
-                }
-                is State.Loading -> onLoading(true)
-                is State.Success -> {
-                    onLoading(false)
-                    listProducts = isState.responseTo()
-                    listProductsAdapter.loadData(listProducts)
-                }
+    private fun initObserver(){
+        onLoading(viewModel.loading)
+        viewModel.products.observe(viewLifecycleOwner, {
+            if (it.isNullOrEmpty()){
+                listEmpty(viewModel.empty)
+            }else{
+                onLoading(viewModel.loading)
+                listProductsAdapter.loadData(it)
             }
         })
-    }
-
-    private fun onFailed(s: String) {
-        Toast.makeText(requireContext(), s, Toast.LENGTH_SHORT).show()
     }
 
     private fun onLoading(b: Boolean) {
@@ -93,6 +80,14 @@ class SearchProducts : Fragment() {
             binding.loading.visibility = View.VISIBLE
         }else{
             binding.loading.visibility = View.GONE
+        }
+    }
+
+    private fun listEmpty(e : Boolean){
+        if (e){
+            binding.listEmpty.visibility = View.VISIBLE
+        }else{
+            binding.listEmpty.visibility = View.GONE
         }
     }
 
@@ -117,9 +112,8 @@ class SearchProducts : Fragment() {
 
     private fun onItemListener(){
         listProductsAdapter.itemListener {
-            val bundle = Bundle()
-            bundle.putString("product", Gson().toJson(it))
-            findNavController().navigate(R.id.action_searchProducts_to_descriptionProducts, bundle)
+            viewModel.loadDataDescription(it)
+            findNavController().navigate(R.id.action_searchProducts_to_descriptionProducts)
         }
     }
 
