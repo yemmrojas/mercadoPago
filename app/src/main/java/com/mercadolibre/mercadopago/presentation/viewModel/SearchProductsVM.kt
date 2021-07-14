@@ -18,6 +18,7 @@ class SearchProductsVM(val searchProductUseCase: SearchProductUseCase) : ViewMod
     val product : LiveData<ProductsModel> get() = _product
     var loading = false
     var empty = false
+    var saveData = 0
 
     fun loadData(txtSearch : String){
         _state.value = State.Loading

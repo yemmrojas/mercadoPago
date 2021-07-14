@@ -19,8 +19,6 @@ class DescriptionProducts : Fragment() {
 
     private val viewModel : SearchProductsVM by sharedViewModel()
 
-    
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

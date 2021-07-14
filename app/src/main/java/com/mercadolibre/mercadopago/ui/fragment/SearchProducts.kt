@@ -51,6 +51,7 @@ class SearchProducts : Fragment() {
 
     private fun initView() {
         onSearch()
+        saveData()
     }
 
     private fun initRecycler(){
@@ -114,6 +115,12 @@ class SearchProducts : Fragment() {
         listProductsAdapter.itemListener {
             viewModel.loadDataDescription(it)
             findNavController().navigate(R.id.action_searchProducts_to_descriptionProducts)
+        }
+    }
+
+    private fun saveData(){
+        if (viewModel.saveData == 1){
+            initRecycler()
         }
     }
 

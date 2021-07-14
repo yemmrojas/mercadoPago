@@ -43,6 +43,7 @@ class HomeActivity : AppCompatActivity() {
                 }
                 is State.Success -> {
                     viewModel.loading = false
+                    viewModel.saveData = 1
                     viewModel.products.value = isState.responseTo()
                 }
             }
