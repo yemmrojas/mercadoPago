@@ -21,7 +21,6 @@ val viewModelModule : Module = module {
     viewModel {
         SearchProductsVM(searchProductUseCase = get())
     }
-
 }
 
 // injection domain
@@ -35,11 +34,9 @@ val repositoryModule : Module = module {
     single {
         MercadoRepoImp(mercadoApi = get()) as MercadoRepo
     }
-
 }
 
 // injection network
-
 val networkModule : Module = module {
     single(named(RETROIT_NAME)) {
         createNetworkClient(
@@ -49,6 +46,4 @@ val networkModule : Module = module {
     }
 
     single { get<Retrofit>(named(RETROIT_NAME)).create(MercadoApi::class.java) }
-
 }
-

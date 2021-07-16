@@ -47,7 +47,7 @@
             android:textSize="@dimen/_16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgProduct"
+            app:layout_constraintTop_toBottomOf="@id/imgProduct"
             tools:text="$ 300.000" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -60,7 +60,7 @@
             android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/precio"
+            app:layout_constraintTop_toBottomOf="@id/precio"
             tools:text="Esto es una prueba nada mas" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

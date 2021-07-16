@@ -6,22 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
-import android.widget.Toast
-import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.google.gson.Gson
 import com.mercadolibre.mercadopago.R
 import com.mercadolibre.mercadopago.databinding.FragmentSearchProductsBinding
-import com.mercadolibre.mercadopago.domain.model.ProductsModel
-import com.mercadolibre.mercadopago.presentation.state.State
 import com.mercadolibre.mercadopago.presentation.viewModel.SearchProductsVM
 import com.mercadolibre.mercadopago.ui.adapter.ListProductAdapter
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SearchProducts : Fragment() {
-
 
     private var _binding : FragmentSearchProductsBinding? = null
     private val  binding get() =  _binding!!
@@ -32,8 +25,8 @@ class SearchProducts : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
+    ): View {
+
         _binding = FragmentSearchProductsBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -42,7 +35,6 @@ class SearchProducts : Fragment() {
         super.onActivityCreated(savedInstanceState)
         initView()
     }
-
 
     override fun onDestroy() {
         super.onDestroy()
@@ -108,7 +100,6 @@ class SearchProducts : Fragment() {
                 return false
             }
         })
-
     }
 
     private fun onItemListener(){
@@ -123,6 +114,4 @@ class SearchProducts : Fragment() {
             initRecycler()
         }
     }
-
-
 }

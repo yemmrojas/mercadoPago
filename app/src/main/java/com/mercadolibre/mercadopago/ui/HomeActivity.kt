@@ -5,7 +5,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import com.mercadolibre.mercadopago.databinding.ActivityMainBinding
 import com.mercadolibre.mercadopago.presentation.state.State
 import com.mercadolibre.mercadopago.presentation.viewModel.SearchProductsVM
@@ -18,8 +17,10 @@ class HomeActivity : AppCompatActivity() {
             context.startActivity(Intent(context, HomeActivity::class.java))
         }
     }
+
     private val viewModel : SearchProductsVM by viewModel()
     private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)

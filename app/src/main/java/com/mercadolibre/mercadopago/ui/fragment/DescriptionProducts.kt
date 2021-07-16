@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.mercadolibre.mercadopago.databinding.FragmentDescriptionProductsBinding
-import com.mercadolibre.mercadopago.domain.model.ProductsModel
 import com.mercadolibre.mercadopago.presentation.viewModel.SearchProductsVM
 import com.mercadolibre.mercadopago.util.toPrice
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -22,8 +21,7 @@ class DescriptionProducts : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
+    ): View {
         _binding = FragmentDescriptionProductsBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -60,5 +58,4 @@ class DescriptionProducts : Fragment() {
             requireActivity().onBackPressed()
         }
     }
-
 }

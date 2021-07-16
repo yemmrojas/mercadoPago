@@ -52,7 +52,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardSearch" />
+        app:layout_constraintTop_toBottomOf="@id/cardSearch" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/listEmpty"
@@ -97,7 +97,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/rvListProduct"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardSearch">
+        app:layout_constraintTop_toBottomOf="@id/cardSearch">
 
         <androidx.appcompat.widget.AppCompatImageView
             app:srcCompat="@drawable/img_logo_mercado"
