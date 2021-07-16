@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginTop="@dimen/_5dp"
+    android:layout_marginStart="@dimen/_5dp"
+    android:layout_marginEnd="@dimen/_5dp"
+    android:layout_marginBottom="@dimen/_5dp"
+    android:layout_width="match_parent"
+    app:cardCornerRadius="@dimen/_16dp"
+    android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:background="@color/blue_e3"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_marginTop="@dimen/_16dp"
+            android:layout_marginEnd="@dimen/_8dp"
+            android:layout_marginStart="@dimen/_8dp"
+            android:textStyle="italic"
+            android:maxLines="1"
+            android:textColor="@color/blue_e3"
+            android:id="@+id/price"
+            android:textSize="@dimen/_16sp"
+            tools:text="Precio : $ 500.000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_marginTop="@dimen/_8dp"
+            android:layout_marginEnd="@dimen/_8dp"
+            android:layout_marginStart="@dimen/_8dp"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:id="@+id/title"
+            android:textSize="@dimen/_16sp"
+            tools:text="Celular Motorola G6 Silver Xt1925 32gb 3gb Ram Liberado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_margin="@dimen/_16dp"
+            android:id="@+id/btnDeta"
+            app:cornerRadius="@dimen/_16dp"
+            android:textAllCaps="false"
+            android:text="@string/ver_producto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.cardview.widget.CardView>
